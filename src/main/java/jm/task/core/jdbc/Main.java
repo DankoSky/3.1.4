@@ -15,6 +15,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws SQLException {
         UserService userService = new UserServiceImpl();
+        userService.dropUsersTable();
         userService.createUsersTable(); //Создание таблицы User(ов)
 
         userService.saveUser("Олег", "Соловец", (byte) 35); //Добавление 4 User(ов) в таблицу с данными на свой выбор.
