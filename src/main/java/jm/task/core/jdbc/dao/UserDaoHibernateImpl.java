@@ -92,16 +92,13 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public List<User> getAllUsers() {
-        List<User> userList;
-        List<User> userList2 = new ArrayList<>();
+        List<User> userList = new ArrayList<>();
+       
         Transaction transaction = null;
         try (Session session = Util.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             userList = session.createQuery("From User").list();
-
-            for (User u : userList) {
-                userList2.add(u);
-            }
+           
             transaction.commit();
             System.out.println("Пользователи добавлены в Аррэйлист");
         } catch (Exception e) {
@@ -110,7 +107,7 @@ public class UserDaoHibernateImpl implements UserDao {
                 transaction.rollback();
             }
         }
-        return userList2;
+        return userList;
     }
 
     @Override
